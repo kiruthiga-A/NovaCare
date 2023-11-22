@@ -22,7 +22,7 @@ export default function NavBar() {
   const currentPathname = usePathname();
 
   return (
-    <section className="sticky top-0 left-0 flex flex-row justify-between items-center bg-sky-500 p-5">
+    <section className="fixed w-full top-0 left-0 flex flex-row justify-between items-center px-5">
       <Link className="flex flex-row items-center" href="/">
         <Image alt="logo" src={"/icon.jpeg"} width={50} height={50} />
         <h1 className="font-extrabold text-4xl ml-2">NCI</h1>
@@ -38,14 +38,13 @@ export default function NavBar() {
         } md:static md:w-auto md:flex-row md:space-y-0 md:space-x-5 md:bg-transparent md:pt-5 md:h-auto md:shadow-none md:rounded-none`}
       >
         {NavLink.map((val) => (
-          <li>
+          <li key={val.key}>
             <Link
               href={val.link}
               className={cn(
                 "text-xl font-bold  hover:text-pink-400 transition-colors",
                 val.link == currentPathname ? "text-pink-400" : "text-white",
               )}
-              key={val.key}
             >
               {val.lable}
             </Link>
