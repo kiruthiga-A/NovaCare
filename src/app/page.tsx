@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
@@ -10,6 +12,7 @@ import Link from "next/link";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import ServiceSlider from "@/components/ServiceSlider";
 
 export default function Home() {
   return (
@@ -64,13 +67,15 @@ export default function Home() {
       <section className="flex flex-col items-center justify-center pb-10 px-8 md:px-32 md:pb-24">
         <h1 className="font-poppins text-5xl text-accentBlue mb-8">Services</h1>
         <section className="flex flex-col items-center justify-center space-y-6 md:flex-row-reverse">
-          <Image
+          <ServiceSlider />
+          {/*          <Image
             alt="services-slider"
             src="/slider.png"
             className="md:h-[200px] w-fit"
             width={300}
-            height={200}
+            height={200} 
           />
+ */}
           <section className="text-center md:text-left">
             <h1 className="text-2xl font-bold text-accentRed pb-3 md:w-[300px]">
               Heart Rate Variablility

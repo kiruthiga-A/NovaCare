@@ -14,7 +14,7 @@ export default function NavBar() {
 
   return (
     <section
-      className={`fixed w-full top-0 left-0 flex flex-row justify-between items-center px-5 py-3 ${
+      className={`fixed w-full top-0 left-0 z-20 flex flex-row justify-between items-center px-5 py-3 ${
         activeNav && "bg-accentBlue"
       } transition-all ease-in`}
     >
