@@ -17,8 +17,14 @@ module.exports = {
     },
     extend: {
       colors: {
-        accentBlue: "#3AB0FF",
-        accentRed: "#F97474",
+        accentBlue: {
+          DEFAULT: "#3AB0FF",
+          hover: "#AADDFF",
+        },
+        accentRed: {
+          DEFAULT: "#F97474",
+          hover: "#FF8080",
+        },
 
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

@@ -22,7 +22,7 @@ export default function Home() {
           "Where <span className="text-accentRed">checkup</span> meets{" "}
           <span className="text-accentRed">convenience</span>"
         </p>
-        <Button className="bg-accentRed w-fit rounded-xl shadow-xl md:text-2xl md:p-6 ">
+        <Button className="bg-accentRed w-fit rounded-xl shadow-xl md:text-2xl md:p-6 hover:bg-accentRed-hover">
           PRODUCT DEMO
         </Button>
         <Image
