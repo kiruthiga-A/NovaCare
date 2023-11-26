@@ -49,3 +49,39 @@ export const TileData = [
     imgLink: "pulse_rate_quotient_image_url",
   },
 ];
+
+export const faqData = [
+  {
+    id: 1,
+    question:
+      "How does the app measure heart rate through the mobile camera flash?",
+    answer:
+      "The app uses machine learning algorithms to analyze changes in light absorption caused by blood flow when you place your finger over the mobile camera flash. This information helps calculate your heart rate accurately.",
+  },
+  {
+    id: 2,
+    question:
+      "Is it accurate to measure heart rate using the mobile camera flash?",
+    answer:
+      "Yes, the app has been designed with advanced algorithms to ensure accurate heart rate measurements. However, it's important to use the app in well-lit conditions and follow the instructions provided for optimal accuracy.",
+  },
+  {
+    id: 3,
+    question:
+      "Are there any specific conditions for using the heart rate measurement feature?",
+    answer:
+      "For accurate readings, ensure that your finger covers the mobile camera flash completely. Use the feature in a well-lit environment, and avoid excessive movement during the measurement process.",
+  },
+  {
+    id: 4,
+    question: "Can the app be used for medical diagnosis or treatment?",
+    answer:
+      "The app is not intended for medical diagnosis or treatment. It is designed for informational purposes only. Consult with a healthcare professional for any medical concerns or conditions.",
+  },
+  {
+    id: 5,
+    question: "How often should I measure my heart rate using the app?",
+    answer:
+      "You can measure your heart rate as often as you like, but for routine monitoring, follow the recommended guidelines provided in the app. If you have specific health concerns, consult with a healthcare professional for personalized advice.",
+  },
+];

@@ -2,17 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import Link from "next/link";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import ServiceSlider from "@/components/ServiceSlider";
+import FaqSection from "@/components/FAQSection";
 
 export default function Home() {
   return (
@@ -74,54 +69,7 @@ export default function Home() {
           Frequently Asked Questions (FAQs)
         </h1>
 
-        <Accordion
-          type="single"
-          collapsible
-          className="w-full font-bold md:text-xl"
-        >
-          <AccordionItem
-            className="border-accentRed border rounded-xl p-1 px-3  md:px-8"
-            value="item-1"
-          >
-            <AccordionTrigger>
-              What is NCI, and how does it work?
-            </AccordionTrigger>
-            <AccordionContent>
-              Your App Name] stands out with its user-friendly interface,
-              personalized assessments, and accurate insights. It prioritizes
-              user privacy and security, making it a trustworthy solution for
-              both individuals and healthcare practitioners. Yes. It adheres to
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem
-            className="border-accentRed border rounded-xl p-1 px-3 mt-3 md:px-8"
-            value="item-2"
-          >
-            <AccordionTrigger>
-              What is NCI, and how does it work?
-            </AccordionTrigger>
-            <AccordionContent>
-              Your App Name] stands out with its user-friendly interface,
-              personalized assessments, and accurate insights. It prioritizes
-              user privacy and security, making it a trustworthy solution for
-              both individuals and healthcare practitioners. Yes. It adheres to
-            </AccordionContent>
-          </AccordionItem>
-          <AccordionItem
-            className="border-accentRed border rounded-xl p-1 px-3 mt-3 md:px-8"
-            value="item-3"
-          >
-            <AccordionTrigger>
-              What is NCI, and how does it work?
-            </AccordionTrigger>
-            <AccordionContent>
-              Your App Name] stands out with its user-friendly interface,
-              personalized assessments, and accurate insights. It prioritizes
-              user privacy and security, making it a trustworthy solution for
-              both individuals and healthcare practitioners. Yes. It adheres to
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        <FaqSection />
       </section>
 
       <section className="bg-[url(/footer-background.svg)] flex flex-col  h-96 px-8 ">
