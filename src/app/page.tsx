@@ -9,7 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Link from "next/link";
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import ServiceSlider from "@/components/ServiceSlider";
@@ -66,29 +66,7 @@ export default function Home() {
 
       <section className="flex flex-col items-center justify-center pb-10 px-8 md:px-32 md:pb-24">
         <h1 className="font-poppins text-5xl text-accentBlue mb-8">Services</h1>
-        <section className="flex flex-col items-center justify-center space-y-6 md:flex-row-reverse">
-          <ServiceSlider />
-          {/*          <Image
-            alt="services-slider"
-            src="/slider.png"
-            className="md:h-[200px] w-fit"
-            width={300}
-            height={200} 
-          />
- */}
-          <section className="text-center md:text-left">
-            <h1 className="text-2xl font-bold text-accentRed pb-3 md:w-[300px]">
-              Heart Rate Variablility
-            </h1>
-            <p className="text-center font-medium md:text-left">
-              Heart rate variability (HRV) is a measure of the variation in time
-              between consecutive heartbeats. It is not a constant, as the time
-              between each heartbeat can fluctuate. HRV is controlled by the
-              autonomic nervous system, which regulates involuntary bodily
-              functions such as breathing and heart rate.
-            </p>
-          </section>
-        </section>
+        <ServiceSlider />
       </section>
 
       <section className="flex flex-col items-center justify-center px-7 mb-10 md:px-32 md:mb-24">
