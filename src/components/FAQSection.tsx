@@ -15,6 +15,7 @@ export default function FaqSection() {
     >
       {faqData.map((data) => (
         <AccordionItem
+          key={data.id}
           className="border-accentRed border rounded-xl p-1 px-3 my-3 md:px-8"
           value={`item-${data.id}`}
         >

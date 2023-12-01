@@ -30,7 +30,7 @@ export default function ServiceSlider() {
           slidesPerView={"auto"}
         >
           {TileData.map((tile) => (
-            <SwiperSlide>
+            <SwiperSlide key={tile.key}>
               <h1 className="text-center text-3xl font-bold text-accentRed pb-3 md:text-left">
                 {tile.title}
               </h1>
