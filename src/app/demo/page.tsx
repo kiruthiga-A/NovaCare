@@ -36,9 +36,10 @@ export default function Demo() {
   const stopVideo = () => {
     const video = videoRef.current;
     const mediaStream = video?.srcObject;
-    const tracks = mediaStream.getTracks();
-    tracks.forEach((track: any) => track.stop());
+    //  const tracks = mediaStream.getTracks();
+    // tracks.forEach((track: any) => track.stop());
   };
+
   const measureHeartRate = () => {
     let redList: number[] = [],
       timeStamp: number[] = [];
@@ -51,7 +52,8 @@ export default function Demo() {
     const getRedList = () => {
       const noiseFactor = 2.0;
       const context = canvasRef.current?.getContext("2d");
-      context?.drawImage(videoRef.current, 0, 0, 100, 100);
+      const video = videoRef.current as CanvasImageSource;
+      context?.drawImage(video, 0, 0, 100, 100);
       const imgData = context?.getImageData(0, 0, 100, 100).data;
 
       let redSum = 0,

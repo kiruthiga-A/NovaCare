@@ -17,11 +17,15 @@ import { useState } from "react";
 export default function ServiceSlider() {
   const [controlledSwiper, setControlledSwiper] = useState(null);
 
+  const handleSwiper = (swiper: any) => {
+    setControlledSwiper(swiper);
+  };
+
   return (
     <section className="w-full flex flex-col-reverse items-center justify-center space-x-3 md:flex-row px-8">
       <section className="w-full [300px] md:w-[500px] md:min-w-[400px]">
         <Swiper
-          onSwiper={setControlledSwiper}
+          onSwiper={handleSwiper}
           modules={[Controller, EffectFade]}
           effect="fade"
           loop={true}
@@ -71,8 +75,12 @@ export default function ServiceSlider() {
           controller={{ control: controlledSwiper }}
         >
           {TileData.map((tile) => (
-            <SwiperSlide>
-              <img className="w-full" src="servicesTile.svg" />
+            <SwiperSlide key={tile.key}>
+              <img
+                alt="servicetile"
+                className="w-full"
+                src="servicesTile.svg"
+              />
             </SwiperSlide>
           ))}
         </Swiper>

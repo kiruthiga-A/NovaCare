@@ -17,8 +17,8 @@ export default function Home() {
           NOVA CARE INNOVATIONS
         </h1>
         <p className="text-lg text-center text-white font-medium md:text-5xl  md:pb-8">
-          "Where <span className="text-accentRed">checkup</span> meets{" "}
-          <span className="text-accentRed">convenience</span>"
+          &quot; Where <span className="text-accentRed">checkup</span> meets{" "}
+          <span className="text-accentRed">convenience</span>&quot;
         </p>
         <Button className="bg-accentRed w-fit rounded-xl shadow-xl md:text-2xl md:p-6 hover:bg-accentRed-hover">
           PRODUCT DEMO
@@ -42,10 +42,11 @@ export default function Home() {
             width={400}
           />
           <p className="flex-1 text-center md:text-left  md:w-[700px]">
-            "Introducing <strong>NCI</strong> — your comprehensive solution for
-            transforming healthcare practices. Elevate patient care with our
-            innovative app, providing healthcare professionals with advanced
-            tools for conducting thorough and efficient medical checkups. <br />
+            &quot; Introducing <strong>NCI</strong> — your comprehensive
+            solution for transforming healthcare practices. Elevate patient care
+            with our innovative app, providing healthcare professionals with
+            advanced tools for conducting thorough and efficient medical
+            checkups. <br />
             <br />
             <strong>NCI</strong> streamlines the process, allowing medical
             practitioners to personalize assessments, track patient health data,
@@ -54,7 +55,7 @@ export default function Home() {
             efficiency and precision. Join <strong>NCI</strong> in
             revolutionizing healthcare delivery — where personalized medical
             checkups meet the precision of technology, setting a new standard in
-            patient-centric care."
+            patient-centric care.&quot;
           </p>
         </section>
       </section>
