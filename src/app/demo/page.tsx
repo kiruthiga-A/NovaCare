@@ -9,8 +9,19 @@ interface Status {
 }
 
 export default function Demo() {
-  const [status, isStatus] = useState<Status | null>(null);
-  useEffect(() => {}, []);
+  const [canStart, setCanStart] = useState<boolean>(true);
+  const [time, setTime] = useState<number>(0);
+
+  useEffect(() => {
+    const customInterval = setInterval(() => {
+      if (canStart) setTime((prev) => prev + 1);
+    }, 1000);
+
+    return () => {
+      setTime(0);
+      clearInterval(customInterval);
+    };
+  }, [canStart]);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -31,13 +42,6 @@ export default function Demo() {
       .catch((err) => {
         console.log(err);
       });
-  };
-
-  const stopVideo = () => {
-    const video = videoRef.current;
-    const mediaStream = video?.srcObject;
-    //  const tracks = mediaStream.getTracks();
-    // tracks.forEach((track: any) => track.stop());
   };
 
   const measureHeartRate = () => {
@@ -95,14 +99,30 @@ export default function Demo() {
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center bg-sky-100 space-y-5-0">
       <AllowCameraAlert open />
-
       <canvas ref={canvasRef}></canvas>
+
       <Button onClick={measureHeartRate}>Measure</Button>
-      <h1>{status?.description}</h1>
+      <Button
+        onClick={() => {
+          setCanStart(true);
+        }}
+      >
+        start
+      </Button>
+
+      <Button
+        onClick={() => {
+          setCanStart(false);
+        }}
+      >
+        stop
+      </Button>
+
+      <h1>{time}</h1>
+
       <div className="flex flex-col items-center">
         <video className="w-[100px] h-[100px] rounded-full" ref={videoRef} />
         <button onClick={getVideo}>Record</button>
-        <button onClick={stopVideo}>Stop</button>
       </div>
     </main>
   );
