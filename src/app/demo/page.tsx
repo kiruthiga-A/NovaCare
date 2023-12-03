@@ -9,8 +9,10 @@ interface Status {
 }
 
 export default function Demo() {
-  const [canStart, setCanStart] = useState<boolean>(true);
+  const [canStart, setCanStart] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
+  const isCompleted = useRef<boolean>(false);
+  let requestId: number;
 
   useEffect(() => {
     const customInterval = setInterval(() => {
@@ -22,6 +24,8 @@ export default function Demo() {
       clearInterval(customInterval);
     };
   }, [canStart]);
+
+  if (time > 4) isCompleted.current = true;
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -47,11 +51,6 @@ export default function Demo() {
   const measureHeartRate = () => {
     let redList: number[] = [],
       timeStamp: number[] = [];
-    let requestId: number;
-
-    setTimeout(() => {
-      cancelAnimationFrame(requestId);
-    }, 5000);
 
     const getRedList = () => {
       const noiseFactor = 2.0;
@@ -74,24 +73,37 @@ export default function Demo() {
       let redAvg = redSum / pixelCount,
         greenAvg = greenSum / pixelCount,
         blueAvg = blueSum / pixelCount;
-      redList.push(redAvg);
-      timeStamp.push(performance.now());
-
-      console.log(redList);
 
       let motionArtifactBool =
         redAvg >= noiseFactor * greenAvg && redAvg >= noiseFactor * blueAvg;
       if (!motionArtifactBool) {
-        console.log("not on came");
+        setCanStart(false);
+        redList = [];
+        timeStamp = [];
+
         motionArtifactBool = true;
       } else if (redAvg < 20 && !motionArtifactBool) {
-        console.log("lighting not enough");
+        setCanStart(false);
+        redList = [];
+        timeStamp = [];
+
         motionArtifactBool = true;
       } else {
-        console.log("rightPos");
+        setCanStart(true);
+        redList.push(redAvg);
+        timeStamp.push(performance.now());
+
+        console.log(redList);
+
         motionArtifactBool = false;
       }
+
       requestId = requestAnimationFrame(getRedList);
+
+      if (isCompleted.current) {
+        setCanStart(false);
+        cancelAnimationFrame(requestId);
+      }
     };
     requestAnimationFrame(getRedList);
   };
@@ -102,22 +114,6 @@ export default function Demo() {
       <canvas ref={canvasRef}></canvas>
 
       <Button onClick={measureHeartRate}>Measure</Button>
-      <Button
-        onClick={() => {
-          setCanStart(true);
-        }}
-      >
-        start
-      </Button>
-
-      <Button
-        onClick={() => {
-          setCanStart(false);
-        }}
-      >
-        stop
-      </Button>
-
       <h1>{time}</h1>
 
       <div className="flex flex-col items-center">
