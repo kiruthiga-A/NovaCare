@@ -24,7 +24,7 @@ export default function Home() {
           PRODUCT DEMO
         </Button>
         <Image
-          src="/mock-up-image2.png"
+          src="/HeroMockup.png"
           alt="mock-up-image"
           width={800}
           height={768}
@@ -35,7 +35,7 @@ export default function Home() {
         <h1 className="font-poppins text-5xl text-accentBlue pb-5">About Us</h1>
         <section className="flex flex-col items-center md:flex-row md:space-x-10">
           <Image
-            src="/AboutUs.png"
+            src="/AboutMockup.png"
             alt="aboutus"
             className="md:h-[500px] w-fit"
             height={400}

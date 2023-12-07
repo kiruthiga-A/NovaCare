@@ -28,7 +28,6 @@ export default function ServiceSlider() {
           onSwiper={handleSwiper}
           modules={[Controller, EffectFade]}
           effect="fade"
-          loop={true}
           fadeEffect={{ crossFade: true }}
           speed={800}
           slidesPerView={"auto"}
@@ -65,7 +64,6 @@ export default function ServiceSlider() {
             slideShadows: false,
           }}
           centeredSlides={true}
-          loop={true}
           slidesPerView={"auto"}
           navigation={{
             nextEl: ".image-swiper-button-next",
@@ -79,7 +77,7 @@ export default function ServiceSlider() {
               <img
                 alt="servicetile"
                 className="w-full"
-                src="servicesTile.svg"
+                src={tile.imgLink}
               />
             </SwiperSlide>
           ))}
