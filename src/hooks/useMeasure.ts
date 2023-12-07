@@ -78,6 +78,7 @@ function useMeasure(timeDuration: number) {
       const res = await axios.request(option);
       data.current = res.data;
       console.log(data.current);
+      console.log(redList.current);
     }, 3000);
 
     return () => clearTimeout(APIInterval);
@@ -158,11 +159,11 @@ function useMeasure(timeDuration: number) {
   return {
     measureStatus,
     measureHeartRate,
+    data,
     time,
     canvasRef,
     videoRef,
     status,
-    canStartCount,
   };
 }
 
