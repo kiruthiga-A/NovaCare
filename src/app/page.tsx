@@ -25,6 +25,7 @@ export default function Home() {
         </Button>
         <Image
           src="/HeroMockup.png"
+          priority
           alt="mock-up-image"
           width={800}
           height={768}
