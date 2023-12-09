@@ -2,23 +2,18 @@
 import Lottie from "lottie-react";
 import data from "../lottie/MeasureButtonFull.json";
 import close from "../lottie/MeasureButtonClose.json";
-import { useState } from "react";
+import { useMeasureContext } from "@/context/MeasureContext";
 
-interface prop {
-  time: number;
-  measure: () => void;
-}
+const MeasureButton = ({ measure }: { measure: () => void }) => {
+  const { measureStatus, time } = useMeasureContext();
 
-const MeasureButton = ({ time, measure }: prop) => {
-  const [isOpen, setOpen] = useState<boolean>(true);
   return (
     <div className="relative">
-      {isOpen
+      {measureStatus === "measure"
         ? (
           <Lottie
             onClick={() => {
-              setOpen(false);
-              measure()
+              measure();
             }}
             initialSegment={[0, 115]}
             className="max-w-md cursor-pointer"
@@ -27,9 +22,10 @@ const MeasureButton = ({ time, measure }: prop) => {
         )
         : <Lottie loop={false} className="max-w-md" animationData={close} />}
       <div
-        onClick={() => setOpen(true)}
         className={`absolute top-1/2 left-1/2  ${
-          isOpen ? "opacity-0" : "translate-y-[-50%] opacity-100"
+          measureStatus === "measure"
+            ? "opacity-0"
+            : "translate-y-[-50%] opacity-100"
         } translate-x-[-50%] delay-700 transition-all	`}
       >
         <h1 className=" text-center text-white font-poppins font-black text-8xl">

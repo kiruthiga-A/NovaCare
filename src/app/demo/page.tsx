@@ -1,19 +1,19 @@
 "use client";
 import MeasureButton from "@/components/MeasureButton";
 import ResultTile from "@/components/ResultTile";
+import { useMeasureContext } from "@/context/MeasureContext";
 import useMeasure from "@/hooks/useMeasure";
 
 export default function Demo() {
   const timeDuration: number = 15;
   const {
     data,
-    measureStatus,
     canvasRef,
-    time,
     measureHeartRate,
     videoRef,
     status,
   } = useMeasure(timeDuration);
+  const { time, measureStatus } = useMeasureContext();
 
   return (
     <main className="w-full h-screen relative flex flex-col items-center justify-center bg-white space-y-5-0">
@@ -72,8 +72,12 @@ export default function Demo() {
         )
         : (
           <>
-            <MeasureButton time={time} measure={measureHeartRate}/>
-            <div className={`opacity-0 flex flex-col items-center transition-opacity duration-1000 ${measureStatus === "measuring" && "opacity-100"}`}>
+            <MeasureButton measure={measureHeartRate} />
+            <div
+              className={`opacity-0 flex flex-col items-center transition-opacity duration-1000 ${
+                measureStatus === "measuring" && "opacity-100"
+              }`}
+            >
               <h1>{status}</h1>
               <h1>{data.current?.respiration_rate || "Wait"}</h1>
               <video

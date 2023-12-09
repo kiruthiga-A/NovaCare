@@ -1,7 +1,6 @@
+import { useMeasureContext } from "@/context/MeasureContext";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-
-type MeasureType = "measure" | "measuring" | "measured";
 
 interface DataType {
   beats_per_minute: number | null;
@@ -11,8 +10,8 @@ interface DataType {
 function useMeasure(timeDuration: number) {
   const [canStartCount, setCanStartCount] = useState<boolean>(false);
   const [status, setStatus] = useState<string>("Not Started");
-  const [time, setTime] = useState<number>(0);
-  const [measureStatus, setMeasureStatus] = useState<MeasureType>("measure");
+  const { time, setTime, measureStatus, setMeasureStatus } =
+    useMeasureContext();
 
   const data = useRef<DataType>();
   const isCompleted = useRef<boolean>(false);
