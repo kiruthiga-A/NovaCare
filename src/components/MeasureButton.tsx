@@ -18,7 +18,7 @@ const MeasureButton = ({ measure }: { measure: () => void }) => {
           ? <Lottie animationData={idle} />
           : <Lottie loop={false} animationData={close} />}
         <h1
-          className={`text-center text-xl md:text-2xl font-semibold font-poppins text-accentRed delay-500 duration-1000 transition-all ${
+          className={`text-center text-xl font-semibold font-poppins text-accentRed delay-500 duration-1000 transition-all ${
             measureStatus === "measuring"
               ? "opacity-100"
               : "opacity-0 translate-y-5 "

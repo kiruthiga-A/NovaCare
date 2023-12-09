@@ -5,14 +5,18 @@ import { useEffect, useRef, useState } from "react";
 interface DataType {
   beats_per_minute: number | null;
   respiration_rate: number | null;
+  rpq: number | null;
+  hrv: number | null;
+  stress_level: number | null;
+  heart_age : number | null;
 }
 
 function useMeasure(timeDuration: number) {
   const [canStartCount, setCanStartCount] = useState<boolean>(false);
-  const { time, setTime, measureStatus, setMeasureStatus, setStatus  } =
+  const { time, setTime, setMeasureStatus, setStatus } =
     useMeasureContext();
 
-  const data = useRef<DataType>();
+  const data = useRef<DataType | null>(null);
   const isCompleted = useRef<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -28,6 +32,7 @@ function useMeasure(timeDuration: number) {
 
     return () => {
       setTime(0);
+      data.current = null;
       clearInterval(customInterval);
     };
   }, [canStartCount]);
@@ -54,8 +59,8 @@ function useMeasure(timeDuration: number) {
     }
   };
 
-  const stopVideo = () => {
-    stream.getTracks().forEach((track) => track.stop());
+  const stopVideo =  () => {
+    stream?.getTracks().forEach((track) => track.stop());
   };
 
   const getData = () => {
@@ -85,6 +90,7 @@ function useMeasure(timeDuration: number) {
   const measureHeartRate = () => {
     getVideo();
     setMeasureStatus("measuring");
+    data.current = null; 
     let clear: () => ReturnType<typeof clearTimeout> = getData();
 
     const getRedList = () => {
@@ -148,6 +154,10 @@ function useMeasure(timeDuration: number) {
         setCanStartCount(false);
         setMeasureStatus("measured");
         cancelAnimationFrame(requestId);
+        setTime(0)
+        isCompleted.current = false;
+        redList.current = [];
+        timeStampList.current = []
         clear();
       }
     };

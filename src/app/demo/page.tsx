@@ -13,7 +13,7 @@ export default function Demo() {
     measureHeartRate,
     videoRef,
   } = useMeasure(timeDuration);
-  const { measureStatus,status } = useMeasureContext();
+  const { measureStatus, setMeasureStatus } = useMeasureContext();
 
   return (
     <main className="w-full h-screen relative flex flex-col items-center justify-center bg-white space-y-5-0">
@@ -28,46 +28,39 @@ export default function Demo() {
               <ResultTile
                 name="Heart Rate"
                 imgLink="HeartRateStandalone.svg"
-                value="85BPM"
+                value={data.current?.beats_per_minute?.toString() || "Error"}
               />
               <ResultTile
                 name="HRV"
                 imgLink="HRVStandalone.svg"
-                value="85BPM"
+                value={data.current?.hrv?.toString() || "Error"}
                 style="outline"
               />
-
               <ResultTile
-                name="Relax Level"
-                imgLink="RelaxStandalone.svg"
-                value="65%"
+                name="PRQ"
+                imgLink="PQRStandalone.svg"
+                value={data.current?.rpq?.toString() || "Error"}
                 style="outline"
               />
               <ResultTile
                 name="Respiration"
                 imgLink="RespirationStandalone.svg"
-                value="12BPM"
-              />
-              <ResultTile
-                name="PRQ"
-                imgLink="PQRStandalone.svg"
-                value="1.3"
-                style="outline"
+                value={data.current?.respiration_rate?.toString() || "Error"}
               />
               <ResultTile
                 name="Stress Level"
                 imgLink="StressStandalone.svg"
-                value="13%"
+                value={data.current?.stress_level?.toString() || "Error"}
                 style="outline"
               />
               <ResultTile
                 name=" Age"
                 imgLink="BioAgeStandalone.svg"
-                value="18"
+                value={data.current?.heart_age?.toString() || "Error"}
                 style="outline"
-                className="md:col-start-2"
               />
             </div>
+              <h1 className="text-xl text-accentRed pt-8 font-semibold">Want to redo ?? <span className="cursor-pointer" onClick={() => setMeasureStatus("measure")}>Click Here !! </span> </h1>
           </div>
         )
         : (
