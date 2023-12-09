@@ -7,6 +7,8 @@ interface MeasureState {
   setTime: Dispatch<SetStateAction<number>>;
   measureStatus: MeasureType;
   setMeasureStatus: Dispatch<SetStateAction<MeasureType>>;
+  status : string; 
+  setStatus: Dispatch<SetStateAction<string>>;
 }
 
 export const MeasureContext = createContext<MeasureState | undefined>(
@@ -25,5 +27,7 @@ export function useMeasureContext() {
     setTime: state.setTime,
     measureStatus: state.measureStatus,
     setMeasureStatus: state.setMeasureStatus,
+    status : state.status,
+    setStatus : state.setStatus
   };
 }

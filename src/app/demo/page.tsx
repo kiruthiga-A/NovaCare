@@ -3,6 +3,7 @@ import MeasureButton from "@/components/MeasureButton";
 import ResultTile from "@/components/ResultTile";
 import { useMeasureContext } from "@/context/MeasureContext";
 import useMeasure from "@/hooks/useMeasure";
+import HeartBeat from "@/components/HeartBeat";
 
 export default function Demo() {
   const timeDuration: number = 15;
@@ -11,9 +12,8 @@ export default function Demo() {
     canvasRef,
     measureHeartRate,
     videoRef,
-    status,
   } = useMeasure(timeDuration);
-  const { time, measureStatus } = useMeasureContext();
+  const { measureStatus,status } = useMeasureContext();
 
   return (
     <main className="w-full h-screen relative flex flex-col items-center justify-center bg-white space-y-5-0">
@@ -78,8 +78,7 @@ export default function Demo() {
                 measureStatus === "measuring" && "opacity-100"
               }`}
             >
-              <h1>{status}</h1>
-              <h1>{data.current?.respiration_rate || "Wait"}</h1>
+              <HeartBeat heartBeat={data.current?.respiration_rate} />
               <video
                 className="absolute bottom-16 w-[100px] bg-red-200 h-[100px] rounded-full"
                 ref={videoRef}

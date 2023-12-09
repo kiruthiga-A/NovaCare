@@ -1,36 +1,41 @@
 "use client";
 import Lottie from "lottie-react";
-import data from "../lottie/MeasureButtonFull.json";
-import close from "../lottie/MeasureButtonClose.json";
+import idle from "../lottie/IdleMeasureButton.json";
+import close from "../lottie/CloseMeasureButton.json";
 import { useMeasureContext } from "@/context/MeasureContext";
 
 const MeasureButton = ({ measure }: { measure: () => void }) => {
-  const { measureStatus, time } = useMeasureContext();
+  const { measureStatus, time, status } = useMeasureContext();
 
   return (
     <div className="relative">
-      {measureStatus === "measure"
-        ? (
-          <Lottie
-            onClick={() => {
-              measure();
-            }}
-            initialSegment={[0, 115]}
-            className="max-w-md cursor-pointer"
-            animationData={data}
-          />
-        )
-        : <Lottie loop={false} className="max-w-md" animationData={close} />}
       <div
-        className={`absolute top-1/2 left-1/2  ${
-          measureStatus === "measure"
-            ? "opacity-0"
-            : "translate-y-[-50%] opacity-100"
-        } translate-x-[-50%] delay-700 transition-all	`}
+        className={`relative max-w-sm ${
+          measureStatus === "measuring" && "translate-y-[-80px] max-w-[300px]"
+        } delay-500 transition-all duration-1000`}
       >
-        <h1 className=" text-center text-white font-poppins font-black text-8xl">
-          {time}
+        {measureStatus === "measure"
+          ? <Lottie animationData={idle} />
+          : <Lottie loop={false} animationData={close} />}
+        <h1
+          className={`text-center text-xl md:text-2xl font-semibold font-poppins text-accentRed delay-500 duration-1000 transition-all ${
+            measureStatus === "measuring"
+              ? "opacity-100"
+              : "opacity-0 translate-y-5 "
+          }`}
+        >
+          {status}
         </h1>
+        <div className=" absolute top-1/2 left-1/2 translate-y-[-50%] translate-x-[-50%] ">
+          <h1
+            onClick={measure}
+            className={`cursor-pointer font-poppins font-black ${
+              measureStatus === "measuring" ? "text-9xl" : "text-4xl"
+            } text-white transition-all delay-500 duration-500 text-center`}
+          >
+            {measureStatus === "measure" ? "Measure" : time}
+          </h1>
+        </div>
       </div>
     </div>
   );

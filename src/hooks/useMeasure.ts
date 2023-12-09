@@ -9,8 +9,7 @@ interface DataType {
 
 function useMeasure(timeDuration: number) {
   const [canStartCount, setCanStartCount] = useState<boolean>(false);
-  const [status, setStatus] = useState<string>("Not Started");
-  const { time, setTime, measureStatus, setMeasureStatus } =
+  const { time, setTime, measureStatus, setMeasureStatus, setStatus  } =
     useMeasureContext();
 
   const data = useRef<DataType>();
@@ -156,13 +155,10 @@ function useMeasure(timeDuration: number) {
   };
 
   return {
-    measureStatus,
     measureHeartRate,
     data,
-    time,
     canvasRef,
     videoRef,
-    status,
   };
 }
 
