@@ -6,6 +6,16 @@ import {
 } from "@/components/ui/accordion";
 import { faqData } from "@/lib/constants";
 
+/**
+ * FaqSection Component creates collapsible accordion
+ * with frequently asked queston.
+ * 
+ * It first shows question and onClick opens up and shows answer.
+ *
+ * @constant faqData file contains object of question and answer which 
+ * is looped and displayed
+ *
+ */
 export default function FaqSection() {
   return (
     <Accordion

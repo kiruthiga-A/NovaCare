@@ -10,10 +10,19 @@ import {
   EffectFade,
 } from "swiper/modules";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-
 import { TileData } from "@/lib/constants";
 import { useState } from "react";
 
+/**
+ * Carousel for explaining all the services that we provide,
+ * There is a SVG icon on the left with arrows to change current services, 
+ * and on the right we have description of the service.
+ *
+ * @constant TileData file contains array of object that describesdetails
+ * details of service provide. We loop over the array and create SwiperSlide
+ * component to display.
+ *
+ */
 export default function ServiceSlider() {
   const [controlledSwiper, setControlledSwiper] = useState(null);
 

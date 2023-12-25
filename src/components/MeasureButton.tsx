@@ -4,7 +4,27 @@ import idle from "../lottie/IdleMeasureButton.json";
 import close from "../lottie/CloseMeasureButton.json";
 import { useMeasureContext } from "@/context/MeasureContext";
 
+/**
+ * Animated MeasureButton component, that runs wavy lottie anmation infinitly
+ * onClicked on the button it will change its anmation from idle to shrinking, displays 
+ * time countdown, shows status of heartRate measurement ( errors from backend, state of the app ).
+ *
+ * @param measure function called when the button is clicked, it changes the context state to measuring and 
+ * responsible for calling the backend.
+ *
+ * @returns animated button component
+ *
+ */
 const MeasureButton = ({ measure }: { measure: () => void }) => {
+  /**
+   * @constant measureStatus depicts current state of the measurement it can backend
+   *   measure (idle state), mesuring (when button is clicked and countdown states), 
+   *   and measured (when the countdown is complete)
+   * @constant time is countdown that runs when the user places their finger correctly on the camera.
+   * @constant status is a understandable message given for the user. It is used to tell user wheather they 
+   *   placed their fingers correctly in the camera, wheather datas are being sent to the server.
+   *
+   */
   const { measureStatus, time, status } = useMeasureContext();
 
   return (

@@ -11,6 +11,26 @@ interface DataType {
   heart_age : number | null;
 }
 
+/**
+ * useMeasure Hook handles entire logic of getting 
+ *  - starting camera
+ *  - checking weather user placed finger on camera correctly
+ *  - starts and increment timer countdown
+ *  - average red, blue and green from the camera
+ *  - requests data from the backend 
+ *
+ *  @param timeDuration is the duration of the heart rate measurement test,
+ *    when the timer reaches given timeDuration it will change the state of
+ *    measurement to "mesured", and displays the result.
+ *
+ *  @returns measureHeartRate is a function that starts camera and requestAnimationFrame
+ *    which recursivly gets called and collects redAvg along with timestamp
+ *  @returns data which is response from the backend after sending the redAvg and timeStampList 
+ *    it inclues the services provided @type{DataType}
+ *  @returns videoRef ReactRef that plays video recorder from the users camera in realtime
+ *  @returns canvasRef which is generally hidden and used to calculate avgRed by capturing image from video
+ *    and looping through each pixel and adding it to the list.
+ */
 function useMeasure(timeDuration: number) {
   const [canStartCount, setCanStartCount] = useState<boolean>(false);
   const { time, setTime, setMeasureStatus, setStatus } =
@@ -80,8 +100,6 @@ function useMeasure(timeDuration: number) {
       };
       const res = await axios.request(option);
       data.current = res.data;
-      console.log(data.current);
-      console.log(redList.current);
     }, 3000);
 
     return () => clearTimeout(APIInterval);
@@ -93,6 +111,16 @@ function useMeasure(timeDuration: number) {
     data.current = null; 
     let clear: () => ReturnType<typeof clearTimeout> = getData();
 
+    /**
+     * getRedList sets the image from video at a unit time to the canvasRef 
+     * and loops through every pixels of image and sums red, blue, green value from rbg value
+     * returned seperatly and calculete their average per pixel. It checks weather 
+     * user placed finger on the camera depending upon avgRed.
+     *
+     * This function is called recursivly using requestAnimationFrame which matches number of calls
+     * to the refresh rate of the users device. 
+     * o
+     */
     const getRedList = () => {
       const noiseFactor = 2.0;
       const context = canvasRef.current?.getContext("2d", {
@@ -149,6 +177,9 @@ function useMeasure(timeDuration: number) {
 
       requestId = requestAnimationFrame(getRedList);
 
+      /**
+       * Is base case for ending the loop and moving to show the result page.
+       */
       if (isCompleted.current) {
         stopVideo();
         setCanStartCount(false);

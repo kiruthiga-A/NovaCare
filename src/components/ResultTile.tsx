@@ -6,6 +6,17 @@ interface props {
   imgLink: string;
 }
 
+/**
+ * ResultTile is a reusable component that is used to 
+ * display final parameter that is being calculated by the backend server at the end when measurement is over.
+ *
+ * @param imgLink path of the SVG icon that depicts the parameter, mostly from public folder.
+ * @param name parameter's name wheater HeartRate, HeartRateVariablity, RespiratoryRate, StressLevel etc.,
+ * @param value result of the paramter received from the backend server, like 10BPM from the backend.
+ * @param style weather the tile is fill inside or just outline
+ * @param className other custom styling given for a Tile
+ *
+ */
 const ResultTile = (
   { imgLink, name, value, style = "fill", className }: props,
 ) => {
