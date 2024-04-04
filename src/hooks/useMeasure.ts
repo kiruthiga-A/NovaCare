@@ -88,7 +88,7 @@ function useMeasure(timeDuration: number) {
       if (redList.current.length < 100) return;
       const option = {
         method: "POST",
-        url: process.env.NEXT_PUBLIC_BACKEND_URL,
+        url: "https://us-central1-beats-stage.cloudfunctions.net/beats-api/",
         withCredentials: false,
         headers: { "Content-Type": "application/json" },
         data: {
