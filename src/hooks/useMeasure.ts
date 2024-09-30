@@ -92,7 +92,7 @@ function useMeasure(timeDuration: number) {
         withCredentials: false,
         headers: { "Content-Type": "application/json" },
         data: {
-          pixel_value: redList.current,
+          bvp_array: redList.current,
           timestamp: timeStampList.current,
           user_id: "example_user",
           batch_id: "example_batch",
