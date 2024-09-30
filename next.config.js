@@ -6,6 +6,7 @@ const nextConfig = {
         return [
             {
                 // matching all API routes
+                output: 'export',
                 source: "/beats-api/:path*",
                 headers: [
                     { key: "Access-Control-Allow-Credentials", value: "true" },
