@@ -95,13 +95,14 @@ function useMeasure(timeDuration: number) {
           bvp_array: redList.current,
           timestamp: timeStampList.current,
           user_id: "example_user",
-          end_flag: !isCompleted.current,
+          end_flag: isCompleted.current,
         },
       };
       const res = await axios.request(option);
       data.current = res.data;
     }, 3000);
 
+    
     return () => clearTimeout(APIInterval);
   };
 
