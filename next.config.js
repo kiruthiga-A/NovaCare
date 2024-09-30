@@ -3,7 +3,8 @@ module.exports = {
       return [
         {
           // matching all API routes
-          source: "/",
+          source: '/beats-api/:path*',
+          destination: 'https://us-central1-beats-stage.cloudfunctions.net/beats-api/:path*',
           headers: [
             { key: "Access-Control-Allow-Credentials", value: "true" },
             { key: "Access-Control-Allow-Origin", value: "*" },
