@@ -95,7 +95,7 @@ function useMeasure(timeDuration: number) {
           bvp_array: redList.current,
           timestamp: timeStampList.current,
           user_id: "example_user",
-          batch_id: "example_batch",
+          end_flag: !isCompleted.current,
         },
       };
       const res = await axios.request(option);
